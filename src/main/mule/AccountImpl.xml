@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="getAccount" doc:id="68c69dec-738d-4277-abf3-cdef466b4570" >
+		<http:listener doc:name="getAccount" doc:id="bd87a34b-b1fe-4957-9526-7a7952bc8b00" config-ref="HTTP_Listener_config" path="/accounts"/>
+		<set-payload value='"Please use POST operation for query account data"' doc:name="Set Payload" doc:id="7e5f1fce-6da3-4fa3-8722-0422e183b2f2" />
+	</flow>
+	<flow name="queryAccount" doc:id="9e5a547b-83f5-418e-b7e2-97b281531a00" >
+		<http:listener doc:name="queryAccount" doc:id="edd395c9-a806-4a08-b484-340867a7e906" config-ref="HTTP_Listener_config" path="/account"/>
+		<set-payload value='"This is right place to get Account data..."' doc:name="Set Payload" doc:id="9c8b5e9f-4dd1-4a54-b963-ee32d06e67ea" />
+	</flow>
+</mule>

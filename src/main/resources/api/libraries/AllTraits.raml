@@ -1,0 +1,26 @@
+#%RAML 1.0 Library
+# This library file /library/AllTraits.raml contains some basic traits
+
+usage: This library is for some basic traits.
+
+traits:
+  hasReqquestItem:
+    usage: Use this trait for item which has one request body object.
+    body: 
+      application/json:
+        type: <<dataTypeName>>
+  
+  hasResponseItem:
+    usage: Use this trait where response has one item
+    responses:
+      200:
+        body:
+          application/json:
+            type: <<dataTypeName>>
+  hasNotFound:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Error
+            example: !include ../examples/Error.json

@@ -1,0 +1,10 @@
+#%RAML 1.0 ResourceType
+
+    usage: This resource type is used for any collection of items
+    description: A collection of <<resourcePathName>>
+    get:
+      description: get all <<resourcePathName>> filtered
+      is: [hasResponseCollection: {dataTypeName: <<dataTypeName>>}]      
+    post: 
+      description: create a new <<resourcePathName|!singularize >>
+      is: [hasResponseItem: { dataTypeName: <<dataTypeName>> }]

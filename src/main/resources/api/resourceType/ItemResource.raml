@@ -1,0 +1,16 @@
+#%RAML 1.0 ResourceType
+    usage: Use this resource Type to represent a single item.
+    description: Retrieve a <<resourcePathName>>
+    uses:
+      myTraits: ../libraries/AllTraits.raml
+    # above syntax is for library to be included in another resource type and to access one of the trats this library the trait name should be prefefixed with "myTraits.""  
+    get:
+      description: Get a <<resourcePathName>>
+      is: [hasResponseItem: {dataTypeName: <<dataTypeName>>}]
+           
+    put:
+      description: Update a <<resourcePathName>>
+      is: [hasRequestitem: {dataTypeName: <<dataTypeName>>}, hasResponseItem: {dataTypeName: <<dataTypeName>>}]
+    delete:
+      description: Delete a <<resourcePathName>>
+      is: [hasResponseItem: {dataTypeName: <<dataTypeName>> }]

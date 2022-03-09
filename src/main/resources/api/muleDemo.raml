@@ -1,0 +1,61 @@
+#%RAML 1.0 
+title: Retrieve data from Salesforce
+version: v1
+mediaType: application/json
+securedBy: basicAuth
+
+securitySchemes:
+  basicAuth:
+    description: Request must contain the header for authentication
+    type: Basic Authentication
+    describedBy:
+      headers:
+        Authorization: 
+          description: It is used to send Base64 encoded credentials
+          type: string
+types:
+  request: !include datatypes/Request.raml
+  account: !include datatypes/Account.raml
+  contact: !include datatypes/Contact.raml
+  Error: !include datatypes/Error.raml
+
+traits:
+  hasRequestitem: !include traits/hasRequestItem.raml        
+  hasResponseItem: !include traits/hasResponseItem.raml 
+  hasNotFound: !include traits/hasNotFound.raml            
+  hasResponseCollection: !include traits/hasResponseCollection.raml
+            
+resourceTypes:
+  collection: !include resourceType/CollectionResource.raml
+  item: !include resourceType/ItemResource.raml
+              
+/accounts:
+  type: {collection: {"dataTypeName": account}}  
+  get:
+    queryParameters:
+      name?: string
+      ownerName?: string                
+              
+  /{id}:
+    type: {item: {"dataTypeName": account}}
+     
+  #/name/{name}:
+  #  get:
+  #    description: Get Account by name.
+  #    responses:
+  #      200:
+  #        body:
+  #          application/json:
+  #            type: account []
+  #            example: !include examples/AccountsExample.raml
+              
+/contacts:
+  type: {collection: {"dataTypeName": contact}}
+  get:    
+    queryParameters:
+      firstNae?: string
+      lastNae?: string
+      ownerName?: string
+    
+  /{id}:
+    type: {item: {"dataTypeName": contact}}          
